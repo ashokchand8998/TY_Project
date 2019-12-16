@@ -11,32 +11,32 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <header>
-        <div class="container">
-            <div id="branding">
-                <h1>E-Learning Site</h1>
+        <header>
+            <div class="container">
+                <div id="branding">
+                    <h1>E-Learning Site</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.aspx" runat="server">Home</a></li>
+                        <li id="curriculum" runat="server"><a href="curriculum.aspx">Curriculum</a></li>
+                        <li id="more" runat="server"><a href="more.aspx">More</a></li>
+                        <li id="login" runat="server"><a href="Login.aspx">Login</a></li>
+                        <li id="profiles" runat="server"><a href="Profile.aspx">Profile</a></li>
+                    </ul>
+                </nav>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.aspx" runat="server">Home</a></li>
-                    <li id="curriculum" runat="server"><a href="curriculum.aspx">Curriculum</a></li>
-                    <li id="more" runat="server"><a href="more.aspx">More</a></li>
-                    <li id="login" runat="server"><a href="Login.aspx">Login</a></li>
-                    <li id="signup" runat="server"><a href="SignUp.aspx">SignUp</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    
+        </header>
+
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-    
-    <footer>
-      <p>E-Learning Site, Copyright &copy; 2019</p>
-      <p><a href="about.html">About</a></p>
-    </footer>
-        </form>
+
+        <footer>
+            <p>E-Learning Site, Copyright &copy; 2019</p>
+            <p><a href="about.html">About</a></p>
+        </footer>
+    </form>
 </body>
 </html>

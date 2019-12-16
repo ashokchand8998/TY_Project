@@ -13,22 +13,22 @@ namespace WebApplication1 {
     public partial class WebForm2 {
         
         /// <summary>
-        /// TextBox1 control.
+        /// uname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox uname;
         
         /// <summary>
-        /// TextBox2 control.
+        /// password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
         /// Button1 control.

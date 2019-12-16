@@ -2,14 +2,6 @@
 
 <!DOCTYPE html>
 <script runat="server">
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        if (Session["name"] != null)
-        {
-            profile.Text = "Welcome! </br>" + Session["name"].ToString();
-        }
-    }
 </script>
 
 
@@ -44,10 +36,8 @@
             <li class="current"><a href="index.aspx">Home</a></li>
             <li><a href="curriculum.aspx">Curriculum</a></li>
             <li><a href="more.aspx">More</a></li>
-            <li><a href="LogIn.aspx" >Login</a> / <a href="SignUp.aspx">SignUp</a></li>
-            <li>
-                <asp:LinkButton ID="profile" runat="server" PostBackUrl="~/Profile.aspx">PROFILE</asp:LinkButton>
-              </li>
+            <li><a href="LogIn.aspx" >Login</a></li>
+            <li><a href="Profile.aspx">Profile</a></li>
           </ul>
         </nav>
       </div>

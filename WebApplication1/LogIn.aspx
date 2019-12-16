@@ -10,13 +10,13 @@
         <tr>
             <td class="auto-style12">Username:</td>
             <td class="auto-style13">
-                <asp:TextBox ID="TextBox1" runat="server" Height="36px" Width="252px" CssClass="auto-style7" TextMode="Email" AutoCompleteType="Email" Font-Size="Medium" ToolTip="registered email"></asp:TextBox>
+                <asp:TextBox ID="uname" runat="server" Height="36px" Width="252px" CssClass="auto-style7" TextMode="Email" AutoCompleteType="Email" Font-Size="Medium" ToolTip="registered email"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="auto-style12">Password:</td>
             <td class="auto-style13">
-                <asp:TextBox ID="TextBox2" runat="server" Height="36px" Width="252px" CssClass="auto-style7" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="password" runat="server" Height="36px" Width="252px" CssClass="auto-style7" TextMode="Password"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -28,6 +28,7 @@
                 <br />
                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Forgot_Password.aspx">Forgot Password</asp:HyperLink>
                 <br />
+                <a href="SignUp.aspx">SignUp</a><br />
             </td>
         </tr>
     </table>
