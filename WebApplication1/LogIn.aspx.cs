@@ -52,6 +52,7 @@ namespace WebApplication1
                 else
                 {
                     Label1.Visible = true;
+                    uname.Focus();
                 }
             }
             catch (SqlException ex_msg)
