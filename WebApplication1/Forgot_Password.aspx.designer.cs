@@ -22,15 +22,6 @@ namespace WebApplication1 {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
         /// u_name control.
         /// </summary>
         /// <remarks>
@@ -130,13 +121,13 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.Button submit;
         
         /// <summary>
-        /// err_msg control.
+        /// display_msg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label err_msg;
+        protected global::System.Web.UI.WebControls.Label display_msg;
         
         /// <summary>
         /// ValidationSummary1 control.

@@ -17,11 +17,6 @@ namespace WebApplication1
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-                //clearing session for new password recovery
-                Session.Clear();
-                Session.Abandon();
-
         }
         protected void get_otp_Click(object sender, EventArgs e)
         {
@@ -40,12 +35,11 @@ namespace WebApplication1
                 if (dr.HasRows)
                 {
                     // Generate a new 8-character password with at least 1 non-alphanumeric character.
-                    string otp = Membership.GeneratePassword(8, 3);
+                    String otp = Membership.GeneratePassword(8, 2);
                     String name = "";
                     while (dr.Read())
                     {
                         name += dr.GetString(0);
-                        Session["user"] = uname;
                         Session["otp"] = otp;
                     }
 
@@ -70,7 +64,6 @@ namespace WebApplication1
                     {
                         msg.Text = ex.ToString();
                     }
-
                 }
                 else
                 {
@@ -87,23 +80,25 @@ namespace WebApplication1
             {
                 con.Close();
             }
-
-
         }
 
         protected void submit_Click(object sender, EventArgs e)
         {
+            Response.Write("TB:" + otp_box.Text + "\nmail: " + Convert.ToString(Session["otp"]));
             if (otp_box.Text == Convert.ToString(Session["otp"]))
             {
                 try
                 {
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("UPDATE able Set passwords = @passwrd where unser_ame = @uname", con);
-                    cmd.Parameters.AddWithValue("@uname", Convert.ToString(Session["user"]));
-                    cmd.Parameters.AddWithValue("@uname", Convert.ToString(c_passwd.Text));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Password has been saved sucessfully');window.location ='LogIn.aspx';", true);
+                    SqlCommand cmd = new SqlCommand("UPDATE able SET passwords = @passwrd where user_name = @uname", con);
+                    cmd.Parameters.AddWithValue("@uname",u_name.Text);
+                    cmd.Parameters.AddWithValue("@passwrd",c_passwd.Text);
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        display_msg.Text = "OTP matched! Password updated successfully.";
+                        display_msg.Visible=true;
+                    }
+                    
                 }
                 catch (SqlException ex_msg)
                 {
@@ -117,10 +112,13 @@ namespace WebApplication1
             }
             else
             {
-                err_msg.Text = "OTP dosen't match! Please try again";
-                err_msg.Visible = true;
+                display_msg.Text = "OTP dosen't match! Please try again";
+                display_msg.Visible = true;
                 otp_box.Focus();
             }
+            //clearing session for new password recovery
+            Session.Clear();
+            Session.Abandon();
         }
     }
 }
