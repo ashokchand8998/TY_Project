@@ -10,7 +10,7 @@
         <tr>
             <td class="auto-style12">Username:</td>
             <td class="auto-style13">
-                <asp:TextBox ID="uname" runat="server" Height="36px" Width="252px" CssClass="auto-style7" TextMode="Email" AutoCompleteType="Email" Font-Size="Medium" ToolTip="registered email"></asp:TextBox>
+                <asp:textbox id="uname" runat="server" height="36px" width="252px" cssclass="auto-style7" textmode="Email" autocompletetype="Email" font-size="Medium" tooltip="registered email"></asp:textbox>
             </td>
         </tr>
         <tr>

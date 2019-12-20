@@ -13,7 +13,7 @@ namespace WebApplication1
     public partial class Forgot_Password : System.Web.UI.Page
     {
         //Creating connection
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\DB.MDF;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\DB.MDF;Integrated Security=True");
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +28,6 @@ namespace WebApplication1
                 con.Open();
                 SqlCommand cmd = new SqlCommand("SELECT First_name FROM able WHERE user_name = @uname", con);
                 cmd.Parameters.AddWithValue("@uname", uname);
-                //cmd.Parameters.AddWithValue("@dob", b_day);
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 //Checking for valid entries and sending otp via e-mail.
@@ -59,6 +58,7 @@ namespace WebApplication1
                         smtpClient.Send(mailMessage);
                         msg.Text = "Message sent";
                         msg.Visible = true;
+                        change_pass.Attributes.Remove("style");
                     }
                     catch (Exception ex)
                     {
@@ -95,8 +95,7 @@ namespace WebApplication1
                     cmd.Parameters.AddWithValue("@passwrd",c_passwd.Text);
                     if (cmd.ExecuteNonQuery() > 0)
                     {
-                        display_msg.Text = "OTP matched! Password updated successfully.";
-                        display_msg.Visible=true;
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Password updated successfully.');window.location ='LogIn.aspx';", true);
                     }
                     
                 }
