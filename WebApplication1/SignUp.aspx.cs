@@ -27,18 +27,30 @@ namespace WebApplication1
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("insert into able values (@uname,@password,@dob,@roll,@fname,@lname)", con);
-                cmd.Parameters.AddWithValue("@uname", uname.Text);
-                cmd.Parameters.AddWithValue("@password", passwd2.Text);
-                cmd.Parameters.AddWithValue("@dob", dob.Text);
-                cmd.Parameters.AddWithValue("@roll", Convert.ToInt32(roll_no.Text));
-                cmd.Parameters.AddWithValue("@fname", fname.Text);
-                cmd.Parameters.AddWithValue("@lname", lname.Text);
+                SqlCommand chk_cmd = new SqlCommand("SELECT First_name FROM able WHERE user_name = @uname", con);
+                chk_cmd.Parameters.AddWithValue("@uname", uname.Text);
+                SqlDataReader dr = chk_cmd.ExecuteReader();
 
-                if (cmd.ExecuteNonQuery() > 0)
+                //Checking for unique/new user.
+                if (dr.HasRows)
                 {
-                    //Alert for successfull signup and redirect to login page
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('User details saved sucessfully');window.location ='LogIn.aspx';", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('User already present!!\nPlease provide new username/mail id.');window.location ='LogIn.aspx';", true);
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand("insert into able values (@uname,@password,@dob,@roll,@fname,@lname,'nothing')", con);
+                    cmd.Parameters.AddWithValue("@uname", uname.Text);
+                    cmd.Parameters.AddWithValue("@password", passwd2.Text);
+                    cmd.Parameters.AddWithValue("@dob", dob.Text);
+                    cmd.Parameters.AddWithValue("@roll", Convert.ToInt32(roll_no.Text));
+                    cmd.Parameters.AddWithValue("@fname", fname.Text);
+                    cmd.Parameters.AddWithValue("@lname", lname.Text);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        //Alert for successfull signup and redirect to login page
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('User details saved sucessfully');window.location ='LogIn.aspx';", true);
+                    }
                 }
             }
             catch (SqlException ex_msg)

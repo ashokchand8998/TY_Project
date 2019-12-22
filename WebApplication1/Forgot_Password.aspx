@@ -3,7 +3,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <script src="Scripts/jquery-3.4.1.min.js"></script>
 
     <table align="center" class="auto-style13" border="0">
         <tr>

@@ -66,7 +66,7 @@
           <img src="img/database.png"/>
           <h3>Database</h3>
           <p style="font-family: Arial, sans-serif; color: rgb(0, 0, 0); font-size: 18px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">A database 
-              management system (DBMS) is a software package designed to define, manipulate, retrieve and manage data in a database.</div>
+              management system (DBMS) is a software package designed to define, manipulate, retrieve and manage data in a database.</p></div>
       </div>
     </section>
    

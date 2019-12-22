@@ -45,9 +45,10 @@ namespace WebApplication1
                 {
                     while (dr.Read())
                     {
-                        Session["user"] = dr.GetString(0) + " " + dr.GetString(1);
+                        Session["name"] = dr.GetString(0) + " " + dr.GetString(1);
                     }
-                    Response.Redirect(prevPage);
+                    Session["user"] = u_name;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Login sucessfull!');window.location ='"+prevPage+"';", true);
                 }
                 else
                 {
