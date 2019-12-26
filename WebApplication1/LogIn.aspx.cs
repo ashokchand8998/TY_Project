@@ -15,12 +15,13 @@ namespace WebApplication1
         static String prevPage = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            uname.Focus();
             //Code for changing class of selected page to "current" (To change color of the current page label in menu)
             HtmlGenericControl li = (HtmlGenericControl)this.Master.FindControl("login");
             li.Attributes.Add("class", "current");
 
             //Storing previous page url to get redirected to it after successfull login.
-            if (!IsPostBack)
+            if (!IsPostBack  && Request.UrlReferrer!=null)
             {
                 prevPage = Request.UrlReferrer.ToString();
             }
@@ -28,27 +29,27 @@ namespace WebApplication1
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string u_name = this.uname.Text;
-            string passwd = password.Text;
-
             //Creating connection and verifying details
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\DB.MDF;Integrated Security=True");
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT First_name,Last_name FROM able WHERE user_name = '" + u_name + "' AND passwords = '" + passwd + "'", con);
-
+                SqlCommand cmd = new SqlCommand("SELECT First_name,Last_name FROM able WHERE user_name = @username AND passwords = @passwd", con);
+                cmd.Parameters.AddWithValue("@username",uname.Text);
+                cmd.Parameters.AddWithValue("@passwd", password.Text);
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 //Checking for valid entries and storing details in session.
                 if (dr.HasRows)
                 {
+                    String name="";
                     while (dr.Read())
                     {
-                        Session["name"] = dr.GetString(0) + " " + dr.GetString(1);
+                        name = dr.GetString(0) + " " + dr.GetString(1);
                     }
-                    Session["user"] = u_name;
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Login sucessfull!');window.location ='"+prevPage+"';", true);
+                    Session["user"] = uname.Text;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Login sucessfull! Welcome "+name+"');window.location ='" + prevPage + "';", true);
+                    Label1.Visible = false;
                 }
                 else
                 {
@@ -58,7 +59,7 @@ namespace WebApplication1
             }
             catch (SqlException ex_msg)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + ex_msg.Message + "')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + ex_msg.Message + "');", true);
                 uname.Focus();
             }
             finally

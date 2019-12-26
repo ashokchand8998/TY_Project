@@ -19,6 +19,8 @@ namespace WebApplication1
             /*HtmlGenericControl li = (HtmlGenericControl)this.Master.FindControl("signup");
             li.Attributes.Add("class", "current");
         */
+
+            uname.Focus();
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -38,6 +40,7 @@ namespace WebApplication1
                 }
                 else
                 {
+                    dr.Close();
                     SqlCommand cmd = new SqlCommand("insert into able values (@uname,@password,@dob,@roll,@fname,@lname,'nothing')", con);
                     cmd.Parameters.AddWithValue("@uname", uname.Text);
                     cmd.Parameters.AddWithValue("@password", passwd2.Text);
@@ -45,7 +48,6 @@ namespace WebApplication1
                     cmd.Parameters.AddWithValue("@roll", Convert.ToInt32(roll_no.Text));
                     cmd.Parameters.AddWithValue("@fname", fname.Text);
                     cmd.Parameters.AddWithValue("@lname", lname.Text);
-
                     if (cmd.ExecuteNonQuery() > 0)
                     {
                         //Alert for successfull signup and redirect to login page
@@ -55,7 +57,7 @@ namespace WebApplication1
             }
             catch (SqlException ex_msg)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + ex_msg.Message + "')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", "alert('" + ex_msg.Message + "')", true);
                 fname.Focus();
             }
             finally

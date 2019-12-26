@@ -92,7 +92,7 @@
     <Content Include="bin\WebApplication1.dll" />
     <Content Include="bin\WebApplication1.pdb" />
     <Content Include="Curriculum.aspx" />
-    <Content Include="Forgot_Password.aspx" />
+    <Content Include="Reset_Password.aspx" />
     <Content Include="img\database.png" />
     <Content Include="img\development.png" />
     <Content Include="img\download.jpg" />
@@ -134,12 +134,12 @@
     <Compile Include="Curriculum.aspx.designer.cs">
       <DependentUpon>Curriculum.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Forgot_Password.aspx.cs">
-      <DependentUpon>Forgot_Password.aspx</DependentUpon>
+    <Compile Include="Reset_Password.aspx.cs">
+      <DependentUpon>Reset_Password.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forgot_Password.aspx.designer.cs">
-      <DependentUpon>Forgot_Password.aspx</DependentUpon>
+    <Compile Include="Reset_Password.aspx.designer.cs">
+      <DependentUpon>Reset_Password.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogIn.aspx.cs">
       <DependentUpon>LogIn.aspx</DependentUpon>

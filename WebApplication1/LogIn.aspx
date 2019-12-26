@@ -26,7 +26,7 @@
                 <br />
                 <asp:Label ID="Label1" runat="server" CssClass="auto-style7" ForeColor="Red" Text="Unrecognized Username or Password!" Visible="False"></asp:Label>
                 <br />
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Forgot_Password.aspx">Forgot Password</asp:HyperLink>
+                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Reset_Password.aspx">Forgot Password</asp:HyperLink>
                 <br />
                 <a href="SignUp.aspx">SignUp</a><br />
             </td>
