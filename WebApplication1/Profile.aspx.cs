@@ -11,12 +11,10 @@ namespace WebApplication1
 {
     public partial class Profile : System.Web.UI.Page
     {
-        String img_link;
         SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\DB.MDF;Integrated Security = True");
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             //Code for changing class of selected page to "current" (To change color of the current page label in menu)
             HtmlGenericControl li = (HtmlGenericControl)this.Master.FindControl("profiles");
             li.Attributes.Add("class", "current");
@@ -42,16 +40,22 @@ namespace WebApplication1
                                 roll_no.Text = dr.GetInt32(2).ToString();
                                 fname.Text = dr.GetString(3);
                                 lname.Text = dr.GetString(4);
-                                if (dr.GetString(5) != null)
+                                Label1.Text = dr.GetString(5);
+                                if (Label1.Text == "nothing.jpg")
                                 {
-                                    img_link = dr.GetString(5);
+                                    dp.Src = "/img/minion.jpg";
+                                }
+                                else
+                                {
+                                    dp.Src = "/UserDetails/" + uname.Text + "/profile_pics/" + dr.GetString(5);
                                 }
                             }
+
                         }
                     }
                     catch (Exception ex)
                     {
-                        Response.Write("<script>alert('Some error occured while dispaying data.\n" + ex.ToString() + "')</script>");
+                        Response.Write("<script>alert('Some error occured while dispaying data.\n" + ex.ToString() + "')</script >");
                     }
                     finally
                     {
@@ -99,7 +103,7 @@ namespace WebApplication1
                 }
                 catch (SqlException ex_message)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Error updating data.\n" + ex_message.Message + "');", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Error updating data. (Something related to query) " + ex_message.Message + "');", true);
                 }
                 finally
                 {
@@ -110,6 +114,40 @@ namespace WebApplication1
             else
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Sorry!\nSomething went wrong!.');window.location ='Profile.aspx';", true);
+            }
+        }
+
+        protected void upload_btn_Click(object sender, EventArgs e)
+        {
+            string pp_name = "nothing";
+            if (FileUpload1.HasFile)
+            {
+                try
+                {
+                    con.Open();
+                    pp_name = FileUpload1.FileName;
+                    SqlCommand cmd = new SqlCommand("UPDATE able SET profile_pic = @path where user_name = @u_name", con);
+                    cmd.Parameters.AddWithValue("@path", pp_name);
+                    cmd.Parameters.AddWithValue("@u_name", uname.Text);
+
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        FileUpload1.SaveAs(Server.MapPath("~/UserDetails/" + uname.Text + "/profile_pics/") + pp_name);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Profile pic uploaded successfully.');", true);
+                    }
+                }
+                catch (SqlException ex_message)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Problem occured. (Something related to query) " + ex_message.Message + "');", true);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('NO file uploaded!.');", true);
             }
         }
     }

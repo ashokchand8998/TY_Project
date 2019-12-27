@@ -22,7 +22,7 @@
         }
 
         .upload_img {
-            width: 250px;
+            width: 390px;
             margin-top: 15px;
             border: 2px solid Black;
         }
@@ -60,10 +60,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <center>
         <div class="profile_pic">
-            <img class="image" src="img/profile.jpg" id="dp" /><br />
+            <img runat="server" class="image" src="http://localhost:51802/img/profile.jpg" id="dp" /><br />
             </div>
         <div><asp:Label ID="name_label" runat="server" Text="Welcome!!" Font-Bold="True" Font-Names="Comic Sans MS" Font-Size="Larger" ForeColor="Red"></asp:Label></div>
-        <div runat="server" id="upload_img" class="upload_img" hidden="hidden"><asp:FileUpload ID="FileUpload1" runat="server" Width="250px" />
+        <div runat="server" id="upload_img" class="upload_img" hidden="hidden"><asp:FileUpload ID="FileUpload1" runat="server" Width="250px" /><asp:Button ID="Button1" runat="server" Text="Upload Profile Pic" Width="136px" OnClick="upload_btn_Click"></asp:Button>
 </div>
 
     <div class="card">
@@ -117,6 +117,7 @@
                 <asp:Button ID="rmv_account" runat="server" Height="41px" Text="Remove Account" Width="148px" />
             </td>
             </tr><tr><td colspan="3">
+                <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
                 <asp:ValidationSummary ID="ValidationSummary" runat="server" Font-Size="Medium" ForeColor="Blue" HeaderText="Errors:" ShowMessageBox="True" ShowSummary="False" Width="500px" />
         </td></tr></table></center>
 

@@ -18,8 +18,8 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="img\minion.jpg" />
     <Content Include="packages.config" />
     <Content Include="Site1.Master" />
     <Content Include="bin\WebApplication1.dll.config" />
@@ -97,7 +98,6 @@
     <Content Include="img\development.png" />
     <Content Include="img\download.jpg" />
     <Content Include="img\hacking.png" />
-    <Content Include="img\imgbin-evil-minion-edith-felonious-gru-computer-icons-minion-despicable-me-character-illustration-ksqAvVYSNVL5qSssNYHwtkFzS.jpg" />
     <Content Include="img\profile.jpg" />
     <Content Include="index.aspx" />
     <Content Include="LogIn.aspx" />
@@ -176,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="UserDetails\ashokramchait17%40student.mes.ac.in\profile_pics\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

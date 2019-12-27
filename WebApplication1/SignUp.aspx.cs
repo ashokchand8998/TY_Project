@@ -8,6 +8,7 @@ using System.Web.UI.HtmlControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.IO;
 
 namespace WebApplication1
 {
@@ -41,7 +42,7 @@ namespace WebApplication1
                 else
                 {
                     dr.Close();
-                    SqlCommand cmd = new SqlCommand("insert into able values (@uname,@password,@dob,@roll,@fname,@lname,'nothing')", con);
+                    SqlCommand cmd = new SqlCommand("insert into able values (@uname,@password,@dob,@roll,@fname,@lname,'nothing.jpg')", con);
                     cmd.Parameters.AddWithValue("@uname", uname.Text);
                     cmd.Parameters.AddWithValue("@password", passwd2.Text);
                     cmd.Parameters.AddWithValue("@dob", dob.Text);
@@ -50,12 +51,13 @@ namespace WebApplication1
                     cmd.Parameters.AddWithValue("@lname", lname.Text);
                     if (cmd.ExecuteNonQuery() > 0)
                     {
+                        Directory.CreateDirectory(Server.MapPath("~/UserDetails/" + uname.Text + "/profile_pics/"));
                         //Alert for successfull signup and redirect to login page
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('User details saved sucessfully');window.location ='LogIn.aspx';", true);
                     }
                 }
             }
-            catch (SqlException ex_msg)
+            catch (Exception ex_msg)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alert", "alert('" + ex_msg.Message + "')", true);
                 fname.Focus();
