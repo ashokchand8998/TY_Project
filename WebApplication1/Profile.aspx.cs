@@ -6,12 +6,15 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WebApplication1
 {
     public partial class Profile : System.Web.UI.Page
     {
-        SqlConnection con = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\DB.MDF;Integrated Security = True");
+        static string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+
+        SqlConnection con = new SqlConnection(cs);
 
         protected void Page_Load(object sender, EventArgs e)
         {

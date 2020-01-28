@@ -26,18 +26,19 @@ namespace WebApplication1
         protected void Button1_Click(object sender, EventArgs e)
         {
             //Creating connection and using query to insert details
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\DB.MDF;Integrated Security=True");
+            string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            SqlConnection con = new SqlConnection(cs);
             try
             {
                 con.Open();
                 SqlCommand chk_cmd = new SqlCommand("SELECT First_name FROM able WHERE user_name = @uname", con);
                 chk_cmd.Parameters.AddWithValue("@uname", uname.Text);
                 SqlDataReader dr = chk_cmd.ExecuteReader();
-
+      
                 //Checking for unique/new user.
                 if (dr.HasRows)
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('User already present!!\nPlease provide new username/mail id.');window.location ='LogIn.aspx';", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('User already present!! Please provide new username/mail id.');", true);
                 }
                 else
                 {

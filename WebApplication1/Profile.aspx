@@ -117,8 +117,9 @@
                 <asp:Button ID="rmv_account" runat="server" Height="41px" Text="Remove Account" Width="148px" />
             </td>
             </tr><tr><td colspan="3">
-                <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
                 <asp:ValidationSummary ID="ValidationSummary" runat="server" Font-Size="Medium" ForeColor="Blue" HeaderText="Errors:" ShowMessageBox="True" ShowSummary="False" Width="500px" />
+                <br />
+                <asp:Label ID="Label1" runat="server" Text="Label" Visible="False"></asp:Label>
         </td></tr></table></center>
 
 </asp:Content>
