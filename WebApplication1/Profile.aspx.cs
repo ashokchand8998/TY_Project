@@ -26,7 +26,6 @@ namespace WebApplication1
             {
                 if (Session["user"] != null)
                 {
-
                     //query for displaying data
                     SqlCommand view_cmd = new SqlCommand("SELECT [user_name], [dob], [roll_no], [First_name], [Last_name], [profile_pic] FROM [able] WHERE ([user_name] = @user_name)", con);
                     view_cmd.Parameters.AddWithValue("@user_name", Session["user"].ToString());
