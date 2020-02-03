@@ -13,6 +13,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         
         <br />
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional"><ContentTemplate>
         Content to be Added:
         <asp:DropDownList ID="add_content" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
             <asp:ListItem>Select content to be added</asp:ListItem>
@@ -24,35 +25,38 @@
         <br />
         Add here:
         <div>
-            <asp:FileUpload ID="FileUpload1" runat="server" Visible="False" />
+            <asp:FileUpload ID="FileUpload1" class="file_up" runat="server" Visible="False" />
             
-            <asp:TextBox ID="content_name" runat="server" Visible="False"></asp:TextBox>
+            <asp:TextBox ID="content_name" class="link_up" runat="server" Visible="False"></asp:TextBox>
         </div>
+        </ContentTemplate></asp:UpdatePanel>
             
         <br />
         <br />
         Select content location:
-        <asp:DropDownList ID="select_location" runat="server" DataValueField="Curriculum(Local)">
-            <asp:ListItem>Others</asp:ListItem>
+        <asp:DropDownList class="s_location" ID="select_location" runat="server" DataValueField="Curriculum(Local)" AutoPostBack="True" OnSelectedIndexChanged="select_location_SelectedIndexChanged">
             <asp:ListItem>Curriculum(Local)</asp:ListItem>
+            <asp:ListItem>Curriculum(Link)</asp:ListItem>
+            <asp:ListItem>Others</asp:ListItem>
+            <asp:ListItem>Others(Link)</asp:ListItem>
             <asp:ListItem>Syllabus</asp:ListItem>
-            <asp:ListItem>External_Link</asp:ListItem>
         </asp:DropDownList>
         <br />
         <br />
-
-        <div id="options_for_fileupload" runat="server">
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+        <div id="options_for_curriculum_upload" runat="server">
         Select Year (Please select year if content being added is syllabus):
-            <asp:RadioButtonList ID="select_year" runat="server">
+            
+            <asp:RadioButtonList ID="select_year" class="s_year" runat="server">
             <asp:ListItem>I</asp:ListItem>
             <asp:ListItem>II</asp:ListItem>
             <asp:ListItem>III</asp:ListItem>
         </asp:RadioButtonList>
-        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional">
-            <ContentTemplate>
+        
         <br />
         Select Sem:
-        <asp:RadioButtonList ID="select_sem" runat="server" CellPadding="1" CellSpacing="1" Height="73px" Width="86px" AutoPostBack="True" OnSelectedIndexChanged="select_sem_SelectedIndexChanged">
+        <asp:RadioButtonList ID="select_sem" class="s_sem" runat="server" CellPadding="1" CellSpacing="1" Height="73px" Width="86px" AutoPostBack="True" OnSelectedIndexChanged="select_sem_SelectedIndexChanged">
             <asp:ListItem>Sem1</asp:ListItem>
             <asp:ListItem>Sem2</asp:ListItem>
             <asp:ListItem>Sem3</asp:ListItem>
@@ -61,20 +65,21 @@
             <asp:ListItem>Sem6</asp:ListItem>
         </asp:RadioButtonList>
 
-        <br />
+            </div>
+                <br />
         Select subject:        
-        <asp:DropDownList ID="select_sub" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="select_sub" class="s_sub" runat="server"></asp:DropDownList>
+                
                 </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="select_sem" EventName="SelectedIndexChanged" />
             </Triggers>
         </asp:UpdatePanel>
-            </div>
-        <br />
+            
         <br />
         <br />
         Select content type: 
-        <asp:RadioButtonList ID="select_content_type" runat="server">
+        <asp:RadioButtonList ID="select_content_type" class="s_ctype" runat="server">
             <asp:ListItem>Course</asp:ListItem>
             <asp:ListItem>Question Paper</asp:ListItem>
             <asp:ListItem>Book</asp:ListItem>
@@ -85,7 +90,7 @@
            
         <br />
         <br />
-        <asp:Button ID="Button1" runat="server" Height="44px" Text="Save data" Width="310px" OnClick="Button1_Click" />
+        <asp:Button ID="Button1" class="save_button" runat="server" Height="44px" Text="Save data" Width="310px" OnClick="Button1_Click" />
     </div>
 
 </asp:Content>

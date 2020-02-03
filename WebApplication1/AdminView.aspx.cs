@@ -53,6 +53,10 @@ namespace WebApplication1
                     {
                         sem = select_sem.SelectedValue;
                     }
+                    else if (sem == "")
+                    {
+                        sem = "No_Sem";
+                    }
                     if (select_year.SelectedValue != "")
                     {
                         year = select_year.SelectedValue;
@@ -61,9 +65,6 @@ namespace WebApplication1
                     {
                         subject = select_sub.SelectedValue;
                     }
-
-                    problem_finder.Text = "Values variables ko assign kardi hai:\nfilename:"+file_name+ "\ntype:"+ type+ "\nsem:"+ sem + "\nyear:"+ year+ "\nlocation:"+ location+ "\nsubject:"+ subject;
-
                     try
                     {
                         con.Open();
@@ -74,7 +75,7 @@ namespace WebApplication1
                         cmd.Parameters.AddWithValue("@year", year);
                         cmd.Parameters.AddWithValue("@locate", location);
                         cmd.Parameters.AddWithValue("@sub", subject);
-                       
+
                         if (cmd.ExecuteNonQuery() > 0)
                         {
                             if (FileUpload1.Visible == true && FileUpload1.HasFile)
@@ -138,15 +139,11 @@ namespace WebApplication1
                 {
                     content_name.Visible = false;
                     FileUpload1.Visible = true;
-                    options_for_fileupload.Visible = true;
                 }
                 else if (add_content.SelectedValue == "Add Link")
                 {
                     FileUpload1.Visible = false;
                     content_name.Visible = true;
-
-                    //this is not working when dropdown is inside update panel:| Please seek help
-                    options_for_fileupload.Visible = false;
                 }
 
             }
@@ -175,6 +172,7 @@ namespace WebApplication1
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
+                    select_sub.Items.Clear();
                     while (dr.Read())
                     {
                         select_sub.Items.Insert(0, new ListItem("-- Select any Subject --", "0"));
@@ -193,6 +191,49 @@ namespace WebApplication1
             finally
             {
                 con.Close();
+            }
+        }
+
+        protected void select_location_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (select_location.SelectedValue == "Others" | select_location.SelectedValue == "Others(Link)")
+            {
+                //this is not working when dropdown is inside update panel:| Please seek help
+                options_for_curriculum_upload.Visible = false;
+
+                //query for retirval of subjects in the select_sub dropdown list which dosen't belong to curriculum and sem
+                SqlCommand cmd = new SqlCommand("SELECT[Sub1], [Sub2], [Sub4], [Sub3], [Sub5] FROM[Subjects] WHERE([Sem] = @Sem)", con);
+                cmd.Parameters.AddWithValue("@Sem", "No_Sem");
+                try
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        select_sub.Items.Clear();
+                        while (dr.Read())
+                        {
+                            select_sub.Items.Insert(0, new ListItem("-- Select any Subject --", "0"));
+                            select_sub.Items.Add(new ListItem(dr.GetString(0), dr.GetString(0)));
+                            select_sub.Items.Add(new ListItem(dr.GetString(1), dr.GetString(1)));
+                            select_sub.Items.Add(new ListItem(dr.GetString(2), dr.GetString(2)));
+                            select_sub.Items.Add(new ListItem(dr.GetString(3), dr.GetString(3)));
+                            select_sub.Items.Add(new ListItem(dr.GetString(4), dr.GetString(4)));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('Some error occured while dispaying the content. Error Message: " + ex.Message + "')</script >");
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            else
+            {
+                options_for_curriculum_upload.Visible = true;
             }
         }
     }
