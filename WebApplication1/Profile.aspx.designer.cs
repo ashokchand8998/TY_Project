@@ -13,6 +13,51 @@ namespace WebApplication1 {
     public partial class Profile {
         
         /// <summary>
+        /// blink_privilege control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl blink_privilege;
+        
+        /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// Timer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.Timer Timer1;
+        
+        /// <summary>
+        /// show_privilege control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label show_privilege;
+        
+        /// <summary>
         /// dp control.
         /// </summary>
         /// <remarks>
@@ -157,6 +202,42 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.Button chng_button;
         
         /// <summary>
+        /// log_out_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button log_out_btn;
+        
+        /// <summary>
+        /// HyperLink3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        
+        /// <summary>
         /// rmv_account control.
         /// </summary>
         /// <remarks>
@@ -166,13 +247,58 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.Button rmv_account;
         
         /// <summary>
-        /// ValidationSummary control.
+        /// delete_div control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl delete_div;
+        
+        /// <summary>
+        /// verify_pass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox verify_pass;
+        
+        /// <summary>
+        /// confirm_delete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button confirm_delete;
+        
+        /// <summary>
+        /// cancel_delete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cancel_delete;
+        
+        /// <summary>
+        /// error_label control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label error_label;
+        
+        /// <summary>
+        /// admin_content_div control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl admin_content_div;
         
         /// <summary>
         /// Label1 control.
@@ -182,5 +308,32 @@ namespace WebApplication1 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// HyperLink1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        
+        /// <summary>
+        /// HyperLink2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
+        
+        /// <summary>
+        /// ValidationSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
     }
 }

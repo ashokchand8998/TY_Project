@@ -22,7 +22,7 @@ namespace WebApplication1
             li.Attributes.Add("class", "current");
 
             //Storing previous page url to get redirected to it after successfull login.
-            if (!IsPostBack  && Request.UrlReferrer!=null)
+            if (!IsPostBack && Request.UrlReferrer != null)
             {
                 prevPage = Request.UrlReferrer.ToString();
             }
@@ -34,40 +34,64 @@ namespace WebApplication1
             string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
 
             SqlConnection con = new SqlConnection(cs);
-            try
-            {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT First_name,Last_name FROM able WHERE user_name = @username AND passwords = @passwd", con);
-                cmd.Parameters.AddWithValue("@username",uname.Text);
-                cmd.Parameters.AddWithValue("@passwd", password.Text);
-                SqlDataReader dr = cmd.ExecuteReader();
 
-                //Checking for valid entries and storing details in session.
-                if (dr.HasRows)
+            if (Session["user"] != null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('An account is already logged in. Please first signout/logout from that account.');window.location ='Profile.aspx';", true);
+            }
+
+            else
+            {
+                try
                 {
-                    String name="";
-                    while (dr.Read())
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT First_name,Last_name,privilege,passwords FROM Users WHERE user_name = @username", con);
+                    cmd.Parameters.AddWithValue("@username", uname.Text);
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    //Checking for valid entries and storing details in session.
+                    if (dr.HasRows)
                     {
-                        name = dr.GetString(0) + " " + dr.GetString(1);
+                        String name = "";
+                        String privilege = "";
+                        String passwd = "";
+
+                        while (dr.Read())
+                        {
+                            name = dr.GetString(0) + " " + dr.GetString(1);
+                            privilege = dr.GetString(2);
+                            passwd = dr.GetString(3);
+
+                        }
+
+                        if (Helper.VerifyHash(password.Text, "SHA512", passwd))
+                        {
+                            Session["user"] = uname.Text;
+                            Session["privilege"] = privilege.Trim();
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Login sucessfull! Welcome " + name + "');window.location ='" + prevPage + "';", true);
+                            Label1.Visible = false;
+                        }
+                        else
+                        {
+                            Label1.Visible = true;
+                            uname.Focus();
+                        }
                     }
-                    Session["user"] = uname.Text;
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Login sucessfull! Welcome "+name+"');window.location ='" + prevPage + "';", true);
-                    Label1.Visible = false;
+                    else
+                    {
+                        Label1.Visible = true;
+                        uname.Focus();
+                    }
                 }
-                else
+                catch (SqlException ex_msg)
                 {
-                    Label1.Visible = true;
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + ex_msg.Message + "');", true);
                     uname.Focus();
                 }
-            }
-            catch (SqlException ex_msg)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + ex_msg.Message + "');", true);
-                uname.Focus();
-            }
-            finally
-            {
-                con.Close();
+                finally
+                {
+                    con.Close();
+                }
             }
         }
     }

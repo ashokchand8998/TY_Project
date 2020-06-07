@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Curriculum.aspx.cs" Inherits="WebApplication1.Properties.Curriculum" %>
+﻿<%@ Page Title="Curriculum" Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Curriculum.aspx.cs" Inherits="WebApplication1.Properties.Curriculum" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
@@ -8,94 +8,354 @@
         }
 
         .years_table {
+            width: 100%;
             border-collapse: collapse;
             text-align: center;
         }
 
-        .years_table {
-            width: 100%;
-            position:absolute;
-            top:0px;
-        }
-        .years_table th{
-            font-size: 22px;
-            padding: 0px;
-            border-top: 2px solid black;
-            border-bottom: 2px solid black;
-        }
-
-            .years_table td {
-                font-size: 18px;
-                padding: 0px;
+            .years_table th {
+                font-size: 25px;
+                padding: 5px;
+                border-top: 2px solid black;
+                border-bottom: 2px solid black;
+                background-color: gray;
             }
 
-        .years {
-            width: 18%;
-            height: 100%;
-            font-size: medium;
-            padding: 0px;
-            position:relative;
-        }
+            .years_table td {
+                font-size: 20px;
+                padding: 5px;
+                background-color: orange;
+            }
 
         .content {
             height: 100vh;
             padding: 0px;
         }
+
         .auto-style4 {
             height: 27px;
+        }
+
+        .auto-style5 {
+            position: fixed;
+            z-index: 1;
+            top: 75px;
+            left: 0px;
+            overflow-x: hidden;
+            padding: 8px 0;
+            width: 18.4%;
+            font-size: medium;
+            padding: 0px;
+            vertical-align: top;
+            border: 2px solid black;
+        }
+
+
+        .auto-style6 {
+            height: 500px;
+            padding: 0px;
+        }
+
+        .heading {
+            font-size: 50px;
+            background-color: grey;
+            font-family: 'Times New Roman';
+            font-weight: bold;
+            color: orange;
+            border-radius: 10px;
+            border: 2px solid black;
+        }
+
+        .table {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            text-align: center;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .s_sub {
+            color: #fff;
+            font-size: 18px;
+            padding: 5px 10px;
+            border-radius: 5px 12px;
+            background-color: #292929;
+            font-weight: bold;
+        }
+        .sub_list_div{
+            position: fixed;
+            z-index: 1;
+            top: 430px;
+            left: 0px;
+            overflow-x: hidden;
+            vertical-align: top;
+            width:18.4%;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table class="auto-style1">
         <tr>
-            <td class="years" style="background-color: #00FFFF">
-                <table class="years_table">
-                    <tr>
-                        <th>FY</th>
-                    </tr>
-                    <tr>
-                        <td class="auto-style4">
-                            <asp:HyperLink ID="sem1" runat="server" ForeColor="Red" NavigateUrl="~/Curriculum.aspx?page=SemI">SEM I</asp:HyperLink>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:HyperLink ID="sem2" runat="server" NavigateUrl="~/Curriculum.aspx?page=SemII">SEM II</asp:HyperLink>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>SY</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:HyperLink ID="sem3" runat="server" NavigateUrl="~/Curriculum.aspx?page=SemIII">SEM III</asp:HyperLink>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:HyperLink ID="sem4" runat="server" NavigateUrl="~/Curriculum.aspx?page=SemIV">SEM IV</asp:HyperLink>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>TY</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:HyperLink ID="sem5" runat="server" NavigateUrl="~/Curriculum.aspx?page=SemV">SEM V</asp:HyperLink>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style4">
-                            <asp:HyperLink ID="sem6" runat="server" NavigateUrl="~/Curriculum.aspx?page=SemVI">SEM VI</asp:HyperLink>
-                            <br />
-                            <asp:HyperLink ID="add_content" runat="server" NavigateUrl="~/AdminView.aspx">add_content</asp:HyperLink>
-                        </td>
-                    </tr>
-                </table>
+            <td class="auto-style5">
+                <div class="table_div">
+                    <table class="years_table">
+                        <tr>
+                            <th>FY</th>
+                        </tr>
+                        <tr>
+                            <td class="auto-style4">
+                                <asp:HyperLink ID="sem1" runat="server" NavigateUrl="~/Curriculum.aspx?sem=Sem1&year=I" ForeColor="Blue">SEM I</asp:HyperLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:HyperLink ID="sem2" runat="server" NavigateUrl="~/Curriculum.aspx?sem=Sem2&year=I" ForeColor="Blue">SEM II</asp:HyperLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>SY</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:HyperLink ID="sem3" runat="server" NavigateUrl="~/Curriculum.aspx?sem=Sem3&year=II" ForeColor="Blue">SEM III</asp:HyperLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:HyperLink ID="sem4" runat="server" NavigateUrl="~/Curriculum.aspx?sem=Sem4&year=II" ForeColor="Blue">SEM IV</asp:HyperLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>TY</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:HyperLink ID="sem5" runat="server" NavigateUrl="~/Curriculum.aspx?sem=Sem5&year=III" ForeColor="Blue">SEM V</asp:HyperLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style4">
+                                <asp:HyperLink ID="sem6" runat="server" NavigateUrl="~/Curriculum.aspx?sem=Sem6&year=III" ForeColor="Blue">SEM VI</asp:HyperLink>
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </td>
-            <td class="content"><div id="d1" runat="server"><div class="mxgraph" style="" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;zoom&quot;:0.75,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;www.draw.io\&quot; modified=\&quot;2020-01-19T09:15:35.090Z\&quot; agent=\&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36 OPR/66.0.3515.27\&quot; etag=\&quot;oi77vg4_RKn-qnyZY_WX\&quot; version=\&quot;12.5.5\&quot; type=\&quot;device\&quot;&gt;&lt;diagram name=\&quot;Page-1\&quot; id=\&quot;64c3da0e-402f-94eb-ee01-a36477274f13\&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
-<script type="text/javascript" src="https://www.draw.io/js/viewer.min.js"></script></div></td>
+            <td class="auto-style6">
+                <div id="d1" style="margin-left: 18.7%; height: 100%" runat="server">
+                    <div id="default_div" style="height: 100%" runat="server">
+                        <asp:Image ID="Image1" runat="server" Height="100%" ImageUrl="~/img/syllabus_diagram.jpg" Width="100%" />
+                    </div>
+
+                    <div id="sem_page" style="height: 100%; text-align: center; margin-top: 10px" runat="server">
+                        <asp:Label ID="Heading" CssClass="heading" runat="server"></asp:Label>
+                        <div id="subject_list" class="sub_list_div">
+                            <asp:DropDownList ID="select_sub" class="s_sub" runat="server" AutoPostBack="True" AppendDataBoundItems="True" DataSourceID="get_sub" DataTextField="field" DataValueField="field" Width="100%">
+                                <asp:ListItem Text="Please select any subject" Value="" />
+                            </asp:DropDownList>
+                            <asp:SqlDataSource ID="get_sub" runat="server" ConnectionString="<%$ ConnectionStrings:DBCS %>" SelectCommand="SELECT field FROM [Subjects] UNPIVOT( field FOR [sub] IN ([Sub1], [Sub2], [Sub3], [Sub4],[Sub5])) unpvt where sem=@sem">
+                                <SelectParameters>
+                                    <asp:QueryStringParameter Name="Sem" QueryStringField="sem" Type="String" />
+                                </SelectParameters>
+                            </asp:SqlDataSource>
+                        </div>
+                        <br />
+                        <div id="syllabus_div" style="margin-top: 10px">
+                            <fieldset style="border-radius: 50px; border-width: 5px; text-align: center; margin-bottom: 20px; margin-right: auto; margin-left: auto; width: 70%">
+                                <legend>
+                                    <asp:Label ID="syllabus_title" runat="server" Width="100%" Font-Bold="False" Font-Names="Stencil" Font-Size="X-Large" ForeColor="#0066FF">Syllabus</asp:Label>
+                                </legend>
+                                <asp:GridView ID="Syllabus" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="get_syllabus">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Id" InsertVisible="False" SortExpression="Id">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="Orange" Text='<%# Bind("Id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="File / Link" SortExpression="Name">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("Location") %>' Target="_blank" Font-Bold="True" ForeColor="#9999FF" ToolTip="click to view" Text='<%# Eval("Name") %>'></asp:HyperLink>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Location" HeaderText="Location" SortExpression="Location" Visible="False" />
+                                    </Columns>
+                                    <HeaderStyle BackColor="#ffa500" />
+                                    <RowStyle Font-Size="Large" />
+                                </asp:GridView>
+                                <asp:SqlDataSource ID="get_syllabus" runat="server" ConnectionString="<%$ ConnectionStrings:DBCS %>" SelectCommand="SELECT [Id], [Name], [Location] FROM [Content] WHERE (([Year] = @Year) AND ([Type] = @Type))">
+                                    <SelectParameters>
+                                        <asp:QueryStringParameter Name="Year" QueryStringField="year" Type="String" />
+                                        <asp:Parameter DefaultValue="Syllabus" Name="Type" Type="String" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+                            </fieldset>
+                        </div>
+                        <br />
+                        <div id="notes_div">
+                            <fieldset style="border-radius: 50px; border-width: 5px; text-align: center; margin-bottom: 20px; margin-right: auto; margin-left: auto; width: 70%">
+                                <legend>
+                                    <asp:Label ID="notes_title" Text="Notes" runat="server" Width="100%" Font-Bold="False" Font-Names="Stencil" Font-Size="X-Large" ForeColor="#0066FF"></asp:Label>
+                                </legend>
+                                <asp:GridView ID="Notes" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="get_notes">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Id" InsertVisible="False" SortExpression="Id">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="Orange" Text='<%# Bind("Id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="File / Link" SortExpression="Name">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="HyperLink1" runat="server" Font-Bold="True" ForeColor="#9999FF" ToolTip="click to view" NavigateUrl='<%# Eval("Location") %>' Target="_blank" Text='<%# Eval("Name") %>'></asp:HyperLink>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Location" HeaderText="Location" SortExpression="Location" Visible="False" />
+                                    </Columns>
+                                    <HeaderStyle BackColor="#ffa500" />
+                                    <RowStyle Font-Size="Large" />
+                                </asp:GridView>
+                                <asp:SqlDataSource ID="get_notes" runat="server" ConnectionString="<%$ ConnectionStrings:DBCS %>" SelectCommand="SELECT [Id], [Name], [Location] FROM [Content] WHERE (([Sem] = @Sem) AND ([Subject] = @Subject) AND ([Type] = @Type))">
+                                    <SelectParameters>
+                                        <asp:QueryStringParameter Name="Sem" QueryStringField="sem" Type="String" />
+                                        <asp:ControlParameter ControlID="select_sub" Name="Subject" PropertyName="SelectedValue" Type="String" />
+                                        <asp:Parameter DefaultValue="Notes" Name="Type" Type="String" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+                            </fieldset>
+                        </div>
+                        <br />
+                        <div id="books_div">
+                            <fieldset style="border-radius: 50px; border-width: 5px; text-align: center; margin-bottom: 20px; margin-right: auto; margin-left: auto; width: 70%">
+                                <legend>
+                                    <asp:Label ID="books_title" runat="server" Text="Books" Width="100%" Font-Bold="False" Font-Names="Stencil" Font-Size="X-Large" ForeColor="#0066FF"></asp:Label>
+                                </legend>
+                                <asp:GridView ID="Book" CssClass="table" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="get_books">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Id" InsertVisible="False" SortExpression="Id">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="Orange" Text='<%# Bind("Id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="File / Link" SortExpression="Name">
+
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="HyperLink1" runat="server" Font-Bold="True" ForeColor="#9999FF" ToolTip="click to view" NavigateUrl='<%# Eval("Location") %>' Target="_blank" Text='<%# Eval("Name") %>'></asp:HyperLink>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Location" HeaderText="Location" SortExpression="Location" Visible="False" />
+                                    </Columns>
+                                    <HeaderStyle BackColor="#ffa500" />
+                                    <RowStyle Font-Size="Large" />
+                                </asp:GridView>
+                                <asp:SqlDataSource ID="get_books" runat="server" ConnectionString="<%$ ConnectionStrings:DBCS %>" SelectCommand="SELECT [Id], [Name], [Location] FROM [Content] WHERE (([Sem] = @Sem) AND ([Subject] = @Subject) AND ([Type] = @Type))">
+                                    <SelectParameters>
+                                        <asp:QueryStringParameter Name="Sem" QueryStringField="sem" Type="String" />
+                                        <asp:ControlParameter ControlID="select_sub" Name="Subject" PropertyName="SelectedValue" Type="String" />
+                                        <asp:Parameter DefaultValue="Book" Name="Type" Type="String" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+                            </fieldset>
+                        </div>
+                        <br />
+                        <div id="qp_div">
+                            <fieldset style="border-radius: 50px; border-width: 5px; text-align: center; margin-bottom: 20px; margin-right: auto; margin-left: auto; width: 70%">
+                                <legend>
+                                    <asp:Label ID="qp_title" runat="server" Text="Question Papers" Width="100%" Font-Bold="False" Font-Names="Stencil" Font-Size="X-Large" ForeColor="#0066FF"></asp:Label>
+                                </legend>
+                                <asp:GridView ID="Question_Paper" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="get_qp">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Id" InsertVisible="False" SortExpression="Id">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="Orange" Text='<%# Bind("Id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="File / Link" SortExpression="Name">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="HyperLink1" runat="server" Font-Bold="True" ForeColor="#9999FF" ToolTip="click to view" NavigateUrl='<%# Eval("Location") %>' Target="_blank" Text='<%# Eval("Name") %>'></asp:HyperLink>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Location" HeaderText="Location" SortExpression="Location" Visible="False" />
+                                    </Columns>
+                                    <HeaderStyle BackColor="#ffa500" />
+                                    <RowStyle Font-Size="Large" />
+                                </asp:GridView>
+                                <asp:SqlDataSource ID="get_qp" runat="server" ConnectionString="<%$ ConnectionStrings:DBCS %>" SelectCommand="SELECT [Id], [Name], [Location] FROM [Content] WHERE (([Sem] = @Sem) AND ([Subject] = @Subject) AND ([Type] = @Type))">
+                                    <SelectParameters>
+                                        <asp:QueryStringParameter Name="Sem" QueryStringField="sem" Type="String" />
+                                        <asp:ControlParameter ControlID="select_sub" Name="Subject" PropertyName="SelectedValue" Type="String" />
+                                        <asp:Parameter DefaultValue="Question_Paper" Name="Type" Type="String" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+                            </fieldset>
+                        </div>
+                        <br />
+                        <div id="course_div">
+                            <fieldset style="border-radius: 50px; border-width: 5px; text-align: center; margin-bottom: 20px; margin-right: auto; margin-left: auto; width: 70%">
+                                <legend>
+                                    <asp:Label ID="course_title" runat="server" Text="Courses" Width="100%" Font-Bold="False" Font-Names="Stencil" Font-Size="X-Large" ForeColor="#0066FF"></asp:Label>
+                                </legend>
+                                <asp:GridView ID="Course" CssClass="table" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="get_course">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Id" InsertVisible="False" SortExpression="Id">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="Orange" Text='<%# Bind("Id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="File / Link" SortExpression="Name">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="HyperLink1" runat="server" Font-Bold="True" ForeColor="#9999FF" ToolTip="click to view" NavigateUrl='<%# Eval("Location") %>' Target="_blank" Text='<%# Eval("Name") %>'></asp:HyperLink>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Location" HeaderText="Location" SortExpression="Location" Visible="False" />
+                                    </Columns>
+                                    <HeaderStyle BackColor="#ffa500" />
+                                    <RowStyle Font-Size="Large" />
+                                </asp:GridView>
+                                <asp:SqlDataSource ID="get_course" runat="server" ConnectionString="<%$ ConnectionStrings:DBCS %>" SelectCommand="SELECT [Id], [Name], [Location] FROM [Content] WHERE (([Sem] = @Sem) AND ([Subject] = @Subject) AND ([Type] = @Type))">
+                                    <SelectParameters>
+                                        <asp:QueryStringParameter Name="Sem" QueryStringField="sem" Type="String" />
+                                        <asp:ControlParameter ControlID="select_sub" Name="Subject" PropertyName="SelectedValue" Type="String" />
+                                        <asp:Parameter DefaultValue="Course" Name="Type" Type="String" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+                            </fieldset>
+                        </div>
+                        <br />
+                        <div id="others_div">
+                            <fieldset style="border-radius: 50px; border-width: 5px; text-align: center; margin-bottom: 20px; margin-right: auto; margin-left: auto; width: 70%">
+                                <legend>
+                                    <asp:Label ID="others_title" runat="server" Text="Others" Width="100%" Font-Bold="False" Font-Names="Stencil" Font-Size="X-Large" ForeColor="#0066FF"></asp:Label>
+                                </legend>
+                                <asp:GridView ID="Others" CssClass="table" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="get_others">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Id" InsertVisible="False" SortExpression="Id">
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label1" runat="server" Font-Bold="True" ForeColor="Orange" Text='<%# Bind("Id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="File / Link" SortExpression="Name">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="HyperLink1" runat="server" Font-Bold="True" ForeColor="#9999FF" ToolTip="click to view" NavigateUrl='<%# Eval("Location") %>' Target="_blank" Text='<%# Eval("Name") %>'></asp:HyperLink>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Location" HeaderText="Location" SortExpression="Location" Visible="False" />
+                                    </Columns>
+                                    <HeaderStyle BackColor="#ffa500" />
+                                    <RowStyle Font-Size="Large" />
+                                </asp:GridView>
+                                <asp:SqlDataSource ID="get_others" runat="server" ConnectionString="<%$ ConnectionStrings:DBCS %>" SelectCommand="SELECT [Id], [Name], [Location] FROM [Content] WHERE (([Sem] = @Sem) AND ([Subject] = @Subject) AND ([Type] = @Type))">
+                                    <SelectParameters>
+                                        <asp:QueryStringParameter Name="Sem" QueryStringField="sem" Type="String" />
+                                        <asp:ControlParameter ControlID="select_sub" Name="Subject" PropertyName="SelectedValue" Type="String" />
+                                        <asp:Parameter DefaultValue="Others" Name="Type" Type="String" />
+                                    </SelectParameters>
+                                </asp:SqlDataSource>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </td>
         </tr>
     </table>
 </asp:Content>

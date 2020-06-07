@@ -112,22 +112,22 @@ namespace WebApplication1 {
         protected global::System.Web.UI.WebControls.TextBox pass_box;
         
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// OtpRequiredValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator OtpRequiredValidator;
         
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// OPRequiredValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator OPRequiredValidator;
         
         /// <summary>
         /// n_passwd control.

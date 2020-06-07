@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WebApplication1.Properties
 {
@@ -15,14 +18,28 @@ namespace WebApplication1.Properties
             //Code for changing class of selected page to "current" (To change color of the current page label in menu)
             HtmlGenericControl li = (HtmlGenericControl)this.Master.FindControl("curriculum");
             li.Attributes.Add("class", "current");
+
             if (!IsPostBack)
             {
-                string s = Request.QueryString["page"];
-                if (s == "SemV" | s == "SemVI")
+                if (Session["user"] != null)
                 {
-                    d1.InnerHtml = "<a href=\"Docs\\Curriculum\\4.49-Final-TYBSc-IT-Syllabus.pdf\">TYIT Syllabus</a>";
+                    string qs = Request.QueryString["sem"];
+                    if (qs != null)
+                    {
+                        default_div.Visible = false;
+                        Heading.Text = qs;
+                    }
+                    else
+                    {
+                        sem_page.Visible = false;
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Please Login first to access our complete site.');window.location ='Login.aspx';", true);
                 }
             }
         }
+
     }
 }

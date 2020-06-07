@@ -13,147 +13,111 @@ namespace WebApplication1 {
     public partial class AdminView {
         
         /// <summary>
-        /// problem_finder control.
+        /// Label6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label problem_finder;
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Label1 control.
+        /// select_table control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.DropDownList select_table;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// Label7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// Users control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Users;
         
         /// <summary>
-        /// add_content control.
+        /// users_table control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList add_content;
+        protected global::System.Web.UI.WebControls.GridView users_table;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// get_users control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.SqlDataSource get_users;
         
         /// <summary>
-        /// FileUpload1 control.
+        /// Content control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Content;
         
         /// <summary>
-        /// content_name control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox content_name;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// select_location control.
+        /// get_content control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList select_location;
+        protected global::System.Web.UI.WebControls.SqlDataSource get_content;
         
         /// <summary>
-        /// UpdatePanel2 control.
+        /// Subjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Subjects;
         
         /// <summary>
-        /// options_for_curriculum_upload control.
+        /// GridView2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl options_for_curriculum_upload;
+        protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
-        /// select_year control.
+        /// get_subjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList select_year;
-        
-        /// <summary>
-        /// select_sem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList select_sem;
-        
-        /// <summary>
-        /// select_sub control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList select_sub;
-        
-        /// <summary>
-        /// select_content_type control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList select_content_type;
-        
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.SqlDataSource get_subjects;
     }
 }

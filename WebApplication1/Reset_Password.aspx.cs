@@ -27,7 +27,7 @@ namespace WebApplication1
             }
         }
 
-        protected void get_otp_Click(object sender, EventArgs e)
+        protected void cp_Click(object sender, EventArgs e)
         {
             string uname = this.u_name.Text;
 
@@ -35,7 +35,7 @@ namespace WebApplication1
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT First_name FROM able WHERE user_name = @uname", con);
+                SqlCommand cmd = new SqlCommand("SELECT First_name FROM Users WHERE user_name = @uname", con);
                 cmd.Parameters.AddWithValue("@uname", uname);
                 SqlDataReader dr = cmd.ExecuteReader();
 
@@ -50,17 +50,30 @@ namespace WebApplication1
                         name += dr.GetString(0);
                     }
                     String button_id = ((Button)sender).ID;
+
                     if (button_id == "get_otp")
                     {
+                        dr.Close();
+                        SqlCommand otpcmd = new SqlCommand("SELECT passwords FROM Users WHERE user_name = @uname",con);
+                        otpcmd.Parameters.AddWithValue("@uname", "tyelearnit@gmail.com");
+                        SqlDataReader sdr = otpcmd.ExecuteReader();
+                        string pass=null;
+                        if (sdr.HasRows)
+                        {
+                            while (sdr.Read())
+                            {
+                                pass = sdr.GetString(0);
+                            }
+                        }
                         //Creating OTP
                         String otp = Membership.GeneratePassword(8, 2);
                         Session["otp"] = otp;
 
                         //Code for sending mail
-                        String message = "Hey " + name + "!\n Your otp is: " + otp + ".";
-                        SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+                        String message = "Hey " + name + "!\n Your otp is: " + otp;
+                        SmtpClient smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
                         smtpClient.UseDefaultCredentials = false;
-                        smtpClient.Credentials = new System.Net.NetworkCredential("tyelearnit@gmail.com", "tyelearnit7396");
+                        smtpClient.Credentials = new System.Net.NetworkCredential("tyelearnit@gmail.com", pass);
                         smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
 
                         MailMessage mailMessage = new MailMessage("tyelearnit@gmail.com", uname);
@@ -72,24 +85,31 @@ namespace WebApplication1
                             smtpClient.Send(mailMessage);
                             msg.Text = "Message sent";
                             msg.Visible = true;
+
                             //Enabling the div element
-                            change_pass.Attributes.Remove("style");
+                            change_pass.Visible=true;
                             otp_box.Visible = true;
+                            OtpRequiredValidator.Visible = true;
+                            OPRequiredValidator.Visible = false;
                             pass_box.Visible = false;
                             pass_label.Text = "Enter OTP:";
                         }
                         catch (Exception ex)
                         {
-                            msg.Text = ex.ToString();
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + ex.Message + "')", true);
+                            msg.Text = "Some error occured while processing mail!!";
                         }
                     }
                     else if (button_id == "use_pass")
                     {
-                        change_pass.Attributes.Remove("style");
+                        change_pass.Visible=true;
                         pass_box.Visible = true;
+                        OPRequiredValidator.Visible = true;
                         pass_label.Text = "Old Password:";
+
                         //disabling controls related otp
                         otp_box.Visible = false;
+                        OtpRequiredValidator.Visible = false;
                         msg.Visible = false;
                     }
                 }
@@ -119,9 +139,11 @@ namespace WebApplication1
                     try
                     {
                         con.Open();
-                        SqlCommand cmd = new SqlCommand("UPDATE able SET passwords = @passwrd where user_name = @uname", con);
+                        SqlCommand cmd = new SqlCommand("UPDATE Users SET passwords = @passwrd where user_name = @uname", con);
                         cmd.Parameters.AddWithValue("@uname", u_name.Text);
-                        cmd.Parameters.AddWithValue("@passwrd", c_passwd.Text);
+                        //Using ComputeHash method to encrypt password
+                        string ePass = Helper.ComputeHash(c_passwd.Text, "SHA512", null);
+                        cmd.Parameters.AddWithValue("@passwrd", ePass);
                         if (cmd.ExecuteNonQuery() > 0)
                         {
                             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Password updated successfully.');window.location ='LogIn.aspx';", true);
@@ -151,30 +173,67 @@ namespace WebApplication1
                 try
                 {
                     con.Open();
-                    SqlCommand update_cmd = new SqlCommand("UPDATE able SET passwords = @n_passwrd where user_name = @uname AND passwords = @passwd", con);
-                    update_cmd.Parameters.AddWithValue("@uname", u_name.Text);
-                    update_cmd.Parameters.AddWithValue("@n_passwrd", c_passwd.Text);
-                    update_cmd.Parameters.AddWithValue("@passwd", pass_box.Text);
-                    if (update_cmd.ExecuteNonQuery() > 0)
+                    SqlCommand cmd = new SqlCommand("SELECT passwords FROM Users WHERE user_name = @username", con);
+                    cmd.Parameters.AddWithValue("@username", u_name.Text);
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    //Validating password for given username
+                    if (dr.HasRows)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Password updated successfully.');window.location ='LogIn.aspx';", true);
+                        String passwd = "";
+
+                        while (dr.Read())
+                        {
+                            passwd = dr.GetString(0);
+
+                        }
+                        
+                        if (Helper.VerifyHash(pass_box.Text, "SHA512", passwd))
+                        {
+                            dr.Close();
+                            //Code to update password if above condition is true
+                            SqlCommand update_cmd = new SqlCommand("UPDATE Users SET passwords = @n_passwrd where user_name = @uname", con);
+                            update_cmd.Parameters.AddWithValue("@uname", u_name.Text);
+
+                            //Using ComputeHash method to encrypt password
+                            string n_ePass = Helper.ComputeHash(c_passwd.Text, "SHA512", null);
+                            update_cmd.Parameters.AddWithValue("@n_passwrd", n_ePass);
+
+                            if (update_cmd.ExecuteNonQuery() > 0)
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Password updated successfully.');window.location ='LogIn.aspx';", true);
+                            }
+                            else
+                            {
+                                display_msg.Text = "Unable to update password! Please try again";
+                                display_msg.Visible = true;
+                                pass_box.Focus();
+                            }
+                        }
+                        else
+                        {
+                            display_msg.Text = "Incorrect Password! Please try again";
+                            display_msg.Visible = true;
+                            pass_box.Focus();
+                        }
                     }
                     else
                     {
-                        display_msg.Text = "Incorrect Password! Please try again";
+                        display_msg.Text = "Unrecognized username! Please try again";
                         display_msg.Visible = true;
                         pass_box.Focus();
                     }
                 }
                 catch (SqlException ex_msg)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + ex_msg.Message + "')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Some error occured while updating password: " + ex_msg.Message + "');", true);
                     u_name.Focus();
                 }
                 finally
                 {
                     con.Close();
                 }
+                
             }
             //clearing session for new password recovery
             Session.Clear();
